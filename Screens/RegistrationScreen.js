@@ -23,7 +23,7 @@ const RegistrationScreen = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <View style={styles.formWrap}>
-            <View style={{...styles.form, marginBottom: isShowKeybord ? 100 : 0 }}>
+            <View style={{...styles.form, marginBottom: isShowKeybord ? 78 : 0 }}>
               <Text style={styles.inputTitle}>Registration</Text>
               <View>
                 <TextInput
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   bgImage: {
     resizeMode: "cover",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
   input: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   form: {
-    // marginHorizontal: 40,
+    // marginHorizontal: 90,
   },
   inputTitle: {
     fontSize: 30,
