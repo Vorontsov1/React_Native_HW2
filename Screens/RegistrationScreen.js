@@ -36,8 +36,11 @@ const RegistrationScreen = () => {
               activeOpacity={0.7}
               style={styles.buttonContainer}
             >
-                <Text style={styles.buttonText}>SIGN IN</Text>
+              <Text style={styles.buttonText}>SIGN UP</Text>
             </TouchableOpacity>
+            <View>
+              <Text style={styles.subTitle}>Do you have an account? Sign in</Text>
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -106,5 +109,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 30,
     height: 55,
+  },
+    subTitle: {
+        fontWeight: 400,
+        fontSize: 16,
+        lineHeight: 19,
+        textAlign: 'center',
+         color: '#fff',
+         marginTop: 16,
   },
 });
