@@ -1,48 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   ImageBackground,
-    TextInput,
+  TextInput,
   TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 
-
 const RegistrationScreen = () => {
+  const [isShowKeybord, setIsShowKeybord] = useState(false);
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.bgImage}
         source={require("../assets/image/PhotoBG.png")}
       >
-        <View style={styles.formWrap}>
-          <View style={styles.form}>
-            <Text style={styles.inputTitle}>Registration</Text>
-            <View>
-              <TextInput style={styles.input} placeholder="Login" />
-            </View>
-            <View style={{ marginTop: 16 }}>
-              <TextInput style={styles.input} placeholder="Email" />
-            </View>
-            <View style={{ marginTop: 16 }}>
-              <TextInput
-                style={styles.input}
-                secureTextEntry={true}
-                placeholder="Password"
-              />
-            </View>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.buttonContainer}
-            >
-              <Text style={styles.buttonText}>SIGN UP</Text>
-            </TouchableOpacity>
-            <View>
-              <Text style={styles.subTitle}>Do you have an account? Sign in</Text>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={styles.formWrap}>
+            <View style={{...styles.form, marginBottom: isShowKeybord ? 100 : 0 }}>
+              <Text style={styles.inputTitle}>Registration</Text>
+              <View>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Login"
+                  onFocus={() => setIsShowKeybord(true)}
+                />
+              </View>
+              <View style={{ marginTop: 16 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  onFocus={() => setIsShowKeybord(true)}
+                />
+              </View>
+              <View style={{ marginTop: 16 }}>
+                <TextInput
+                  style={styles.input}
+                  secureTextEntry={true}
+                  placeholder="Password"
+                  onFocus={() => setIsShowKeybord(true)}
+                />
+              </View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={styles.buttonContainer}
+              >
+                <Text style={styles.buttonText}>SIGN UP</Text>
+              </TouchableOpacity>
+              <View>
+                <Text style={styles.subTitle}>
+                  Do you have an account? Sign in
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </View>
   );
@@ -74,7 +92,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   form: {
-    marginHorizontal: 40,
+    // marginHorizontal: 40,
   },
   inputTitle: {
     fontSize: 30,
@@ -85,37 +103,39 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   formWrap: {},
+
   buttonContainer: {
-    display: "flex",
-    flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     padding: 16,
-    gap: 16,
     marginTop: 43,
     borderRadius: 30,
     overflow: "hidden",
     height: 50,
     width: "100%",
     marginBottom: 15,
-    backgroundColor: "#FF6C00",
+    ...Platform.select({
+      ios: {
+        backgroundColor: "#FF6C00",
+        borderColor: "white",
+      },
+      android: {
+        backgroundColor: "transparent",
+        borderColor: "transparent",
+      },
+    }),
   },
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#ffffff",
+    color: Platform.OS === "ios" ? "#ffffff" : "transparent",
   },
-  gradient: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 30,
-    height: 55,
-  },
-    subTitle: {
-        fontWeight: 400,
-        fontSize: 16,
-        lineHeight: 19,
-        textAlign: 'center',
-         color: '#fff',
-         marginTop: 16,
+  subTitle: {
+    fontWeight: 400,
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: "center",
+    color: "#fff",
+    marginTop: 16,
   },
 });
