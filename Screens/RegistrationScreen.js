@@ -7,12 +7,19 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  KeyboardAvoidingView,
+    KeyboardAvoidingView,
+  Keyboard,
 } from "react-native";
 
 const RegistrationScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
 
+    
+    const keyboardHide = () => { 
+        setIsShowKeybord(false)
+        Keyboard.dismiss()
+    };
+    
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -23,7 +30,9 @@ const RegistrationScreen = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <View style={styles.formWrap}>
-            <View style={{...styles.form, marginBottom: isShowKeybord ? 78 : 0 }}>
+            <View
+              style={{ ...styles.form, marginBottom: isShowKeybord ? 60 : 50 }}
+            >
               <Text style={styles.inputTitle}>Registration</Text>
               <View>
                 <TextInput
@@ -48,6 +57,7 @@ const RegistrationScreen = () => {
                 />
               </View>
               <TouchableOpacity
+                onPress={keyboardHide}
                 activeOpacity={0.8}
                 style={styles.buttonContainer}
               >
@@ -92,7 +102,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   form: {
-    // marginHorizontal: 90,
   },
   inputTitle: {
     fontSize: 30,
