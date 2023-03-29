@@ -9,11 +9,10 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
-  TouchableWithoutFeedback,
+    TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 // import { useFont } from "expo-font";
-
-
 
 const initialstate = {
   login: "",
@@ -21,34 +20,32 @@ const initialstate = {
   password: "",
 };
 
-
-const loadFonts = async () => {
-    await Font.loadAsync({
-        'Raleway-Italic': require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
-        'Raleway-Bold': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
-    })
-};
-
+// const loadFonts = async () => {
+//     await Font.loadAsync({
+//         'Raleway-Italic': require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
+//         'Raleway-Bold': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
+//     })
+// };
 
 const RegistrationScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
-    const [state, setState] = useState(initialstate);
-    const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [state, setState] = useState(initialstate);
+  // const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const keyboardHide = () => {
     setIsShowKeybord(false);
     Keyboard.dismiss();
-      console.log(state);
-      setState(initialstate);
+    console.log(state);
+    setState(initialstate);
   };
-    
-    // if (!fontsLoaded) {
-    //     return <AppLoading
-    //         startAsync={loadFonts}
-    //         onFinish={() => setFontsLoaded(true)}
-    //           onError={console.warn}
-    //     />
-    // }
+
+  // if (!fontsLoaded) {
+  //     return <AppLoading
+  //         startAsync={loadFonts}
+  //         onFinish={() => setFontsLoaded(true)}
+  //           onError={console.warn}
+  //     />
+  // }
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -67,6 +64,9 @@ const RegistrationScreen = () => {
                   marginBottom: isShowKeybord ? 60 : 50,
                 }}
               >
+                {/* <View style={styles.imageTop}>
+                  <Image source={require("../assets/image//1.jpg")} />
+                </View> */}
                 <View style={styles.header}>
                   <Text style={styles.inputTitle}>Registration</Text>
                 </View>
@@ -147,6 +147,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+    imageTop: {
+      resizeMode: 'contain',
+    width: 25,
+    height: 25,
+   
+   
+  },
   input: {
     borderWidth: 1,
     borderColor: "#000",
@@ -157,11 +164,11 @@ const styles = StyleSheet.create({
     padding: 16,
     marginVertical: 10,
     fontSize: 16,
-    textAlign: "center",
+    textAlign: "left",
   },
   form: {},
-    header: {
-      fontFamily: 'Raleway-Bold',
+  header: {
+    fontFamily: "Raleway-Bold",
     alignItems: "center",
     marginBottom: 16,
   },
@@ -172,7 +179,16 @@ const styles = StyleSheet.create({
     color: "#212121",
     marginBottom: 16,
   },
-  formWrap: {},
+  formWrap: {
+    // position: "absolute",
+    bottom: -40,
+    paddingTop: 60,
+    paddingHorizontal: 20,
+    width: "100%",
+    paddingBottom: 40,
+    backgroundColor: "#fff",
+    borderRadius: 45,
+  },
 
   buttonContainer: {
     alignItems: "center",
@@ -201,11 +217,11 @@ const styles = StyleSheet.create({
     color: Platform.OS === "ios" ? "#ffffff" : "transparent",
   },
   subTitle: {
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
-    color: "#fff",
+    color: "gray",
     marginTop: 16,
   },
 });

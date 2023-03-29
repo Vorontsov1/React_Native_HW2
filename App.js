@@ -4,8 +4,8 @@ import RegistrationScreen from './Screens/RegistrationScreen';
 
 const App = () => {
   return (
-    <RegistrationScreen />
-    // <LoginScreen />
+    // <RegistrationScreen />
+    <LoginScreen />
   );
 }
 
