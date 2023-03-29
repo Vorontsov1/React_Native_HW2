@@ -7,8 +7,9 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-    KeyboardAvoidingView,
-  Keyboard,
+  KeyboardAvoidingView,
+    Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 const RegistrationScreen = () => {
@@ -20,60 +21,67 @@ const RegistrationScreen = () => {
         Keyboard.dismiss()
     };
     
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.bgImage}
-        source={require("../assets/image/PhotoBG.png")}
-      >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          <View style={styles.formWrap}>
-            <View
-              style={{ ...styles.form, marginBottom: isShowKeybord ? 60 : 50 }}
+    return (
+      <TouchableWithoutFeedback onPress={keyboardHide}>
+        <View style={styles.container}>
+          <ImageBackground
+            style={styles.bgImage}
+            source={require("../assets/image/PhotoBG.png")}
+          >
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
             >
-              <Text style={styles.inputTitle}>Registration</Text>
-              <View>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Login"
-                  onFocus={() => setIsShowKeybord(true)}
-                />
+              <View style={styles.formWrap}>
+                <View
+                  style={{
+                    ...styles.form,
+                    marginBottom: isShowKeybord ? 60 : 50,
+                  }}
+                >
+                  <View style={styles.header}>
+                    <Text style={styles.inputTitle}>Registration</Text>
+                  </View>
+                  <View>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Login"
+                      onFocus={() => setIsShowKeybord(true)}
+                    />
+                  </View>
+                  <View style={{ marginTop: 16 }}>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Email"
+                      onFocus={() => setIsShowKeybord(true)}
+                    />
+                  </View>
+                  <View style={{ marginTop: 16 }}>
+                    <TextInput
+                      style={styles.input}
+                      secureTextEntry={true}
+                      placeholder="Password"
+                      onFocus={() => setIsShowKeybord(true)}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    onPress={keyboardHide}
+                    activeOpacity={0.8}
+                    style={styles.buttonContainer}
+                  >
+                    <Text style={styles.buttonText}>SIGN UP</Text>
+                  </TouchableOpacity>
+                  <View>
+                    <Text style={styles.subTitle}>
+                      Do you have an account? Sign in
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View style={{ marginTop: 16 }}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email"
-                  onFocus={() => setIsShowKeybord(true)}
-                />
-              </View>
-              <View style={{ marginTop: 16 }}>
-                <TextInput
-                  style={styles.input}
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  onFocus={() => setIsShowKeybord(true)}
-                />
-              </View>
-              <TouchableOpacity
-                onPress={keyboardHide}
-                activeOpacity={0.8}
-                style={styles.buttonContainer}
-              >
-                <Text style={styles.buttonText}>SIGN UP</Text>
-              </TouchableOpacity>
-              <View>
-                <Text style={styles.subTitle}>
-                  Do you have an account? Sign in
-                </Text>
-              </View>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-    </View>
-  );
+            </KeyboardAvoidingView>
+          </ImageBackground>
+        </View>
+      </TouchableWithoutFeedback>
+    );
 };
 
 export default RegistrationScreen;
@@ -102,11 +110,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   form: {
-  },
+    },
+    header: {
+        alignItems: "center",
+        marginBottom: 16,
+    },
   inputTitle: {
     fontSize: 30,
     fontWeight: "bold",
-    textAlign: "center",
     lineHeight: 40,
     color: "#212121",
     marginBottom: 16,
