@@ -8,80 +8,108 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
-    Keyboard,
+  Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
 
+const initialstate = {
+  login: "",
+  email: "",
+  password: "",
+};
 const RegistrationScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
+  const [state, setState] = useState(initialstate);
 
-    
-    const keyboardHide = () => { 
-        setIsShowKeybord(false)
-        Keyboard.dismiss()
-    };
-    
-    return (
-      <TouchableWithoutFeedback onPress={keyboardHide}>
-        <View style={styles.container}>
-          <ImageBackground
-            style={styles.bgImage}
-            source={require("../assets/image/PhotoBG.png")}
+  const keyboardHide = () => {
+    setIsShowKeybord(false);
+    Keyboard.dismiss();
+      console.log(state);
+      setState(initialstate);
+  };
+
+  return (
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.bgImage}
+          source={require("../assets/image/PhotoBG.png")}
+        >
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            <KeyboardAvoidingView
-              behavior={Platform.OS === "ios" ? "padding" : "height"}
-            >
-              <View style={styles.formWrap}>
-                <View
-                  style={{
-                    ...styles.form,
-                    marginBottom: isShowKeybord ? 60 : 50,
-                  }}
+            <View style={styles.formWrap}>
+              <View
+                style={{
+                  ...styles.form,
+                  marginBottom: isShowKeybord ? 60 : 50,
+                }}
+              >
+                <View style={styles.header}>
+                  <Text style={styles.inputTitle}>Registration</Text>
+                </View>
+                <View>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Login"
+                    onFocus={() => setIsShowKeybord(true)}
+                    value={state.login}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        login: value,
+                      }))
+                    }
+                  />
+                </View>
+                <View style={{ marginTop: 16 }}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    onFocus={() => setIsShowKeybord(true)}
+                    value={state.email}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        email: value,
+                      }))
+                    }
+                  />
+                </View>
+                <View style={{ marginTop: 16 }}>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={true}
+                    placeholder="Password"
+                    onFocus={() => setIsShowKeybord(true)}
+                    value={state.password}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        password: value,
+                      }))
+                    }
+                  />
+                </View>
+                <TouchableOpacity
+                  onPress={keyboardHide}
+                  activeOpacity={0.8}
+                  style={styles.buttonContainer}
                 >
-                  <View style={styles.header}>
-                    <Text style={styles.inputTitle}>Registration</Text>
-                  </View>
-                  <View>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Login"
-                      onFocus={() => setIsShowKeybord(true)}
-                    />
-                  </View>
-                  <View style={{ marginTop: 16 }}>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Email"
-                      onFocus={() => setIsShowKeybord(true)}
-                    />
-                  </View>
-                  <View style={{ marginTop: 16 }}>
-                    <TextInput
-                      style={styles.input}
-                      secureTextEntry={true}
-                      placeholder="Password"
-                      onFocus={() => setIsShowKeybord(true)}
-                    />
-                  </View>
-                  <TouchableOpacity
-                    onPress={keyboardHide}
-                    activeOpacity={0.8}
-                    style={styles.buttonContainer}
-                  >
-                    <Text style={styles.buttonText}>SIGN UP</Text>
-                  </TouchableOpacity>
-                  <View>
-                    <Text style={styles.subTitle}>
-                      Do you have an account? Sign in
-                    </Text>
-                  </View>
+                  <Text style={styles.buttonText}>SIGN UP</Text>
+                </TouchableOpacity>
+                <View>
+                  <Text style={styles.subTitle}>
+                    Do you have an account? Sign in
+                  </Text>
                 </View>
               </View>
-            </KeyboardAvoidingView>
-          </ImageBackground>
-        </View>
-      </TouchableWithoutFeedback>
-    );
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default RegistrationScreen;
@@ -109,12 +137,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-  form: {
-    },
-    header: {
-        alignItems: "center",
-        marginBottom: 16,
-    },
+  form: {},
+  header: {
+    alignItems: "center",
+    marginBottom: 16,
+  },
   inputTitle: {
     fontSize: 30,
     fontWeight: "bold",
