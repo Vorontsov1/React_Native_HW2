@@ -11,15 +11,29 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
+// import { useFont } from "expo-font";
+
+
 
 const initialstate = {
   login: "",
   email: "",
   password: "",
 };
+
+
+const loadFonts = async () => {
+    await Font.loadAsync({
+        'Raleway-Italic': require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
+        'Raleway-Bold': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
+    })
+};
+
+
 const RegistrationScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
-  const [state, setState] = useState(initialstate);
+    const [state, setState] = useState(initialstate);
+    const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const keyboardHide = () => {
     setIsShowKeybord(false);
@@ -27,6 +41,14 @@ const RegistrationScreen = () => {
       console.log(state);
       setState(initialstate);
   };
+    
+    // if (!fontsLoaded) {
+    //     return <AppLoading
+    //         startAsync={loadFonts}
+    //         onFinish={() => setFontsLoaded(true)}
+    //           onError={console.warn}
+    //     />
+    // }
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -138,7 +160,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   form: {},
-  header: {
+    header: {
+      fontFamily: 'Raleway-Bold',
     alignItems: "center",
     marginBottom: 16,
   },
@@ -178,7 +201,7 @@ const styles = StyleSheet.create({
     color: Platform.OS === "ios" ? "#ffffff" : "transparent",
   },
   subTitle: {
-    fontWeight: 400,
+    fontWeight: '400',
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
