@@ -10,6 +10,10 @@ import CreatePostsScreen from "./Screens/mainScreen/CreatePostsScreen";
 import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 
 export const useRoute = (isAuth) => {
   if (!isAuth) {
@@ -29,21 +33,40 @@ export const useRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator>
+    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
       <MainTab.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <MaterialCommunityIcons
+              name="postage-stamp"
+              size={size}
+              color={color}
+            />
+          ),
+        }}
         name="Posts"
         component={PostsScreen}
-        options={{ headerShown: false }}
       />
       <MainTab.Screen
         name="Create"
         component={CreatePostsScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <Ionicons name="md-create" size={size} color={color} />
+          ),
+        }}
       />
       <MainTab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <AntDesign name="profile" size={size} color={color} />
+          ),
+        }}
       />
     </MainTab.Navigator>
   );
