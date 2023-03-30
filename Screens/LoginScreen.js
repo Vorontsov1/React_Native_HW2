@@ -11,7 +11,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Dimensions,
-  Button,
 } from "react-native";
 
 
@@ -107,14 +106,15 @@ const LoginScreen = ({ navigation }) => {
                   <Text style={styles.buttonText}>SIGN IN</Text>
                 </TouchableOpacity>
 
-                <View>
-                  <Text
-                    onPress={() => navigation.navigate("Registration")}
-                    style={styles.subTitle}
-                  >
-                    Not yet an account? Sign up!
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Registration")}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.subTitle}>
+                    Not yet an account?
+                    <Text style={styles.signUpTitle}> Sign up!</Text>
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </KeyboardAvoidingView>
@@ -211,13 +211,12 @@ const styles = StyleSheet.create({
     color: "gray",
     marginTop: 16,
   },
-  linkToReg: {
+  signUpTitle: {
     fontWeight: "400",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
     color: "gray",
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    marginTop: 16,
   },
 });

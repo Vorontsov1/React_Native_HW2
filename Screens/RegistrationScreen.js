@@ -109,14 +109,15 @@ const RegistrationScreen = ({ navigation }) => {
                 >
                   <Text style={styles.buttonText}>SIGN UP</Text>
                 </TouchableOpacity>
-                <View>
-                  <Text
-                    onPress={() => navigation.navigate("Login")}
-                    style={styles.subTitle}
-                  >
-                    Do you have an account? Sign in
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Login")}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.subTitle}>
+                    Do you have an account?
+                    <Text style={styles.signUpTitle}> Sign in</Text>
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </KeyboardAvoidingView>
