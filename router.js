@@ -12,7 +12,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+
 
 
 export const useRoute = (isAuth) => {
@@ -37,11 +37,11 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused, size, color }) => (
+          tabBarIcon: ({ focused, size }) => (
             <MaterialCommunityIcons
               name="postage-stamp"
               size={size}
-              color={color}
+              color={focused ? "#FD292F" : "#759242"}
             />
           ),
         }}
@@ -53,8 +53,12 @@ export const useRoute = (isAuth) => {
         component={CreatePostsScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons name="md-create" size={size} color={color} />
+          tabBarIcon: ({ focused, size }) => (
+            <Ionicons
+              name="md-create"
+              size={size}
+              color={focused ? "#FD292F" : "#759242"}
+            />
           ),
         }}
       />
@@ -63,8 +67,12 @@ export const useRoute = (isAuth) => {
         component={ProfileScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused, size, color }) => (
-            <AntDesign name="profile" size={size} color={color} />
+          tabBarIcon: ({ focused, size }) => (
+            <MaterialCommunityIcons
+              name="face-man-profile"
+              size={size}
+              color={focused ? "#FD292F" : "#759242"}
+            />
           ),
         }}
       />
