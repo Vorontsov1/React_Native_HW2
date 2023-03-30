@@ -10,7 +10,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  Dimensions
+  Dimensions,
+  Button,
 } from "react-native";
 
 
@@ -21,7 +22,8 @@ const initialstate = {
 
 
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+   console.log("navigation", navigation);
   const [isShowKeybord, setIsShowKeybord] = useState(false);
   const [state, setState] = useState(initialstate);
   const [dimensions, setdimensions] = useState(
@@ -64,11 +66,10 @@ const LoginScreen = () => {
                   marginBottom: isShowKeybord ? 60 : 50,
                 }}
               >
-              
                 <View style={styles.header}>
                   <Text style={styles.inputTitle}>Log In</Text>
                 </View>
-               
+
                 <View style={{ marginTop: 16 }}>
                   <TextInput
                     style={styles.input}
@@ -105,9 +106,13 @@ const LoginScreen = () => {
                 >
                   <Text style={styles.buttonText}>SIGN IN</Text>
                 </TouchableOpacity>
+
                 <View>
-                  <Text style={styles.subTitle}>
-                    Not yet an account? Sign up
+                  <Text
+                    onPress={() => navigation.navigate("Registration")}
+                    style={styles.subTitle}
+                  >
+                    Not yet an account? Sign up!
                   </Text>
                 </View>
               </View>
@@ -205,5 +210,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "gray",
     marginTop: 16,
+  },
+  linkToReg: {
+    fontWeight: "400",
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: "center",
+    color: "gray",
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
 });

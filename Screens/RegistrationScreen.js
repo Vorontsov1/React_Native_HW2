@@ -9,7 +9,8 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
-    TouchableWithoutFeedback,
+  TouchableWithoutFeedback,
+    Button,
 } from "react-native";
 
 
@@ -21,7 +22,10 @@ const initialstate = {
 
 
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
+  console.log('navigation', navigation);
+  
+
   const [isShowKeybord, setIsShowKeybord] = useState(false);
   const [state, setState] = useState(initialstate);
 
@@ -52,7 +56,6 @@ const RegistrationScreen = () => {
                   marginBottom: isShowKeybord ? 60 : 50,
                 }}
               >
-               
                 <View style={styles.header}>
                   <Text style={styles.inputTitle}>Registration</Text>
                 </View>
@@ -107,7 +110,10 @@ const RegistrationScreen = () => {
                   <Text style={styles.buttonText}>SIGN UP</Text>
                 </TouchableOpacity>
                 <View>
-                  <Text style={styles.subTitle}>
+                  <Text
+                    onPress={() => navigation.navigate("Login")}
+                    style={styles.subTitle}
+                  >
                     Do you have an account? Sign in
                   </Text>
                 </View>
