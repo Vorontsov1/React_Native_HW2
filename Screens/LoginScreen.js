@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,27 +10,35 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  Image,
+  Dimensions
 } from "react-native";
-// import { useFont } from "expo-font";
+
 
 const initialstate = {
-  login: "",
   email: "",
   password: "",
 };
 
-// const loadFonts = async () => {
-//     await Font.loadAsync({
-//         'Raleway-Italic': require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
-//         'Raleway-Bold': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
-//     })
-// };
+
 
 const LoginScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
   const [state, setState] = useState(initialstate);
-  // const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [dimensions, setdimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
+
+ useEffect(() => {
+   const onChange = () => {
+     const width = Dimensions.get("window").width - 20 * 2;
+     setdimensions(width);
+   };
+   Dimensions.addEventListener("change", onChange);
+   return () => {
+     Dimensions.removeEventListener("change", onChange);
+   };
+ }, []);
+ 
 
   const keyboardHide = () => {
     setIsShowKeybord(false);
@@ -38,14 +46,6 @@ const LoginScreen = () => {
     console.log(state);
     setState(initialstate);
   };
-
-  // if (!fontsLoaded) {
-  //     return <AppLoading
-  //         startAsync={loadFonts}
-  //         onFinish={() => setFontsLoaded(true)}
-  //           onError={console.warn}
-  //     />
-  // }
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -64,9 +64,7 @@ const LoginScreen = () => {
                   marginBottom: isShowKeybord ? 60 : 50,
                 }}
               >
-                {/* <View style={styles.imageTop}>
-                  <Image source={require("../assets/image//1.jpg")} />
-                </View> */}
+              
                 <View style={styles.header}>
                   <Text style={styles.inputTitle}>Log In</Text>
                 </View>
@@ -153,7 +151,6 @@ const styles = StyleSheet.create({
   },
   form: {},
   header: {
-    fontFamily: "Raleway-Bold",
     alignItems: "center",
     marginBottom: 16,
   },

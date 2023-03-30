@@ -10,9 +10,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
     TouchableWithoutFeedback,
-  Image,
 } from "react-native";
-// import { useFont } from "expo-font";
+
 
 const initialstate = {
   login: "",
@@ -20,17 +19,12 @@ const initialstate = {
   password: "",
 };
 
-// const loadFonts = async () => {
-//     await Font.loadAsync({
-//         'Raleway-Italic': require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
-//         'Raleway-Bold': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
-//     })
-// };
+
 
 const RegistrationScreen = () => {
   const [isShowKeybord, setIsShowKeybord] = useState(false);
   const [state, setState] = useState(initialstate);
-  // const [fontsLoaded, setFontsLoaded] = useState(false);
+
 
   const keyboardHide = () => {
     setIsShowKeybord(false);
@@ -39,13 +33,7 @@ const RegistrationScreen = () => {
     setState(initialstate);
   };
 
-  // if (!fontsLoaded) {
-  //     return <AppLoading
-  //         startAsync={loadFonts}
-  //         onFinish={() => setFontsLoaded(true)}
-  //           onError={console.warn}
-  //     />
-  // }
+
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -64,9 +52,7 @@ const RegistrationScreen = () => {
                   marginBottom: isShowKeybord ? 60 : 50,
                 }}
               >
-                {/* <View style={styles.imageTop}>
-                  <Image source={require("../assets/image//1.jpg")} />
-                </View> */}
+               
                 <View style={styles.header}>
                   <Text style={styles.inputTitle}>Registration</Text>
                 </View>
@@ -168,7 +154,6 @@ const styles = StyleSheet.create({
   },
   form: {},
   header: {
-    fontFamily: "Raleway-Bold",
     alignItems: "center",
     marginBottom: 16,
   },
