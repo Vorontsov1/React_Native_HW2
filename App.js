@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './Screens/LoginScreen';
 import RegistrationScreen from './Screens/RegistrationScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 const Stack = createNativeStackNavigator();
+const MainTab = createBottomTabNavigator();
 
 const App = () => {
   return (
